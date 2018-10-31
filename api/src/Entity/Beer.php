@@ -11,7 +11,15 @@ use Doctrine\ORM\Mapping as ORM;
  * Grab a beer.
  *
  * @ORM\Entity
- * @ApiResource
+ * @ApiResource(
+ *     attributes={"access_control"="is_granted('ROLE_USER')"},
+ *     collectionOperations={
+ *         "post"={"access_control"="is_granted('ROLE_ADMIN')", "access_control_message"="Only admins can add books."}
+ *     },
+ *     itemOperations={
+ *         "get"={"access_control"="is_granted('ROLE_USER') and object.owner == user", "access_control_message"="Sorry, but you are not the book owner."}
+ *     }
+ * )
  */
 class Beer
 {
