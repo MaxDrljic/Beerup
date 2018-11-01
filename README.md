@@ -24,9 +24,9 @@ Beerup is a Symfony 4 application powered by API Platform framework. This app is
 
 1. Clone this repository
 2. Go into project
-3. Start all services with Docker: \*\*docker-compose up -d
-4. To see the container's logs, run: \*\*docker-compose logs -f
-5. If everything is set properly, check: \*\*https://localhost
+3. Start all services with Docker: \*docker-compose up -d
+4. To see the container's logs, run: \*docker-compose logs -f
+5. If everything is set properly, check: https://localhost
 6. In beerup/api/ you will find all the files related to this Symfony 4 project.
 
 ## Usage
@@ -35,7 +35,7 @@ This project can be used with API Platform interface, Postman or by using the CL
 
 ## Development Server
 
-Running \*\*docker-compose up -d will run the docker containers. If you run it for the first time, it might take a while for Docker to retrieve and download necessary Docker images.
+Running \*docker-compose up -d will run the docker containers. If you run it for the first time, it might take a while for Docker to retrieve and download necessary Docker images.
 
 ## Changes Made To The Database
 
@@ -43,7 +43,7 @@ In api/src/Entity/ folder, you will find three descriptive entities. In these fi
 
 If you make any changes to entities in Entity/ folder, be sure to run:
 
-\*\*docker-compose exec php bin/console doctrine:schema:update --force
+\*docker-compose exec php bin/console doctrine:schema:update --force
 
 To update the schema. Be sure to hit this command while in the api/ folder, not the Root folder.
 
@@ -53,20 +53,24 @@ For validation, there is a built-in component in API Platform called [Symfony Va
 
 ## Admin
 
-There is a admin privilege out-of-the-box shipped with API Platform framework where you can manage all the created entities and instances. Admin port is on \*\*https://localhost:444
+There is a admin privilege out-of-the-box shipped with API Platform framework where you can manage all the created entities and instances. Admin port is on \*https://localhost:444
 
 ## Authentication
 
-\*\*JWTAuthentcationBundle is included with this project. To set it up:
+\*JWTAuthentcationBundle is included with this project. To set it up:
 
-*$ mkdir config/jwt*
-*$ openssl genrsa -out config/jwt/private.pem -aes256 4096*
+_$ mkdir config/jwt_
+
+_$ openssl genrsa -out config/jwt/private.pem -aes256 4096_
+
 _$ openssl rsa -pubout -in config/jwt/private.pem -out config/jwt/public.pem_
 
 In case first openssl command forces you to input password use following to get the private key decrypted:
 
-*$ openssl rsa -in config/jwt/private.pem -out config/jwt/private2.pem*
-*$ mv config/jwt/private.pem config/jwt/private.pem-back*
+_$ openssl rsa -in config/jwt/private.pem -out config/jwt/private2.pem_
+
+_$ mv config/jwt/private.pem config/jwt/private.pem-back_
+
 _$ mv config/jwt/private2.pem config/jwt/private.pem_
 
 ###### Usage
@@ -88,12 +92,16 @@ _$ curl -H "Authorization: Bearer [TOKEN]" http://localhost:8000/api_
 
 To the test this REST API, Behat is a good choice. To add it:
 
-*$ docker-compose exec php composer require --dev behat/behat*
-*$ docker-compose exec php vendor/bin/behat -V*
+_$ docker-compose exec php composer require --dev behat/behat_
+
+_$ docker-compose exec php vendor/bin/behat -V_
+
 _$ docker-compose exec php vendor/bin/behat --init_
 
 There is already a small Behat test created to test the basic operations for the beer.
 
-To run it: _$ docker-compose exec php vendor/bin/behat_
+To run it:
+
+_$ docker-compose exec php vendor/bin/behat_
 
 Also, you can run the tests with POSTMAN or using the CLI.
