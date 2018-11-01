@@ -65,7 +65,7 @@ _$ openssl genrsa -out config/jwt/private.pem -aes256 4096_
 
 _$ openssl rsa -pubout -in config/jwt/private.pem -out config/jwt/public.pem_
 
-In case first openssl command forces you to input password use following to get the private key decrypted:
+**In case first openssl command forces you to input password use following to get the private key decrypted:**
 
 _$ openssl rsa -in config/jwt/private.pem -out config/jwt/private2.pem_
 
@@ -75,15 +75,15 @@ _$ mv config/jwt/private2.pem config/jwt/private.pem_
 
 ###### Usage
 
-Register a new user:
+**Register a new user:**
 
 _$ curl -X POST http://localhost:8000/register -d \_username=johndoe -d \_password=test_
 
-Get a JWT Token:
+**Get a JWT Token:**
 
 _*$ curl -X POST -H "Content-Type: application/json" http://localhost:8000/login_check -d*_
 
-Example of accessing secured routes:
+**Example of accessing secured routes:**
 
 _$ curl -H "Authorization: Bearer [TOKEN]" http://localhost:8000/api_
 
